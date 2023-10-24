@@ -1,0 +1,8 @@
+{
+    "author": "Your Name",
+    "email": "yname@gmail.com",
+    "project_name_full": "Hello world Project",
+    "project_name": "{{ cookiecutter.project_name_full.lower().replace(' ', '_') }}",
+    "project_short_description": "Hello World!",
+    "version": "1.0"
+}
