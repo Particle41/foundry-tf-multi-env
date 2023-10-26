@@ -1,0 +1,9 @@
+{
+    "project_name_full": "",
+    "project_name": "{{ cookiecutter.project_name_full.lower().replace(' ', '-') }}",
+    "project_short_description": "",
+    "tfstate_bucket": "",
+    "tfstate_table": "",
+    "tfstate_kms_key_name": "",
+    "aws_region": ""
+}

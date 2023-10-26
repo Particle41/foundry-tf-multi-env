@@ -1,0 +1,6 @@
+bucket         = "{{ cookiecutter.tfstate_bucket }}"
+dynamodb_table = "{{ cookiecutter.tfstate_table }}"
+key            = "live/terraform.tfstate"
+encrypt        = true
+kms_key_id     = "alias/{{ cookiecutter.tfstate_kms_key_name }}"
+region         = "{{ cookiecutter.aws_region }}"
