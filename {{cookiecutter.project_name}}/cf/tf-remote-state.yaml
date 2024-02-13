@@ -18,7 +18,7 @@ Metadata:
       TableParameterName:
         default: Table Parameter Name
       KeyParameterName:
-        default: Table Parameter Name
+        default: Key Parameter Name
     ParameterGroups:
       - Label:
           default: Configuration
