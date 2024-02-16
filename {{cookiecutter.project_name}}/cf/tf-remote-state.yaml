@@ -61,8 +61,6 @@ Parameters:
     Description: (Optional) Name of an SSM parameter to store the key name
     Default: ""
 
-
-
 Conditions:
   GenerateBucketName: !Equals [!Ref BucketName, ""]
   GenerateTableName: !Equals [!Ref TableName, ""]
@@ -74,15 +72,15 @@ Conditions:
 Resources:
 
   KmsKey:
-    Type: "AWS::KMS::Key"
+    Type: AWS::KMS::Key
     DeletionPolicy: Retain
     Properties:
-      Description: "KMS key for S3 encryption"
+      Description: KMS key for S3 encryption
       KeyPolicy:
         Version: "2012-10-17"
         Statement:
-          - Sid: "Enable IAM User Permissions"
-            Effect: "Allow"
+          - Sid: Enable IAM User Permissions
+            Effect: Allow
             Principal:
               AWS: !Sub "arn:aws:iam::${AWS::AccountId}:root"
             Action:
@@ -90,15 +88,15 @@ Resources:
             Resource: "*"
 
   KeyAlias:
-    Type: "AWS::KMS::Alias"
+    Type: AWS::KMS::Alias
     DeletionPolicy: Retain
     Properties:
       AliasName: !Sub "alias/${KeyName}"
       TargetKeyId: !Ref KmsKey
 
   S3Bucket:
-    DeletionPolicy: Retain
     Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
     Properties:
       BucketName: !If
         - GenerateBucketName
@@ -123,8 +121,8 @@ Resources:
             NoncurrentVersionExpirationInDays: 365
 
   DbTable:
-    DeletionPolicy: Retain
     Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
     Properties:
       TableName: !If
         - GenerateTableName
@@ -145,6 +143,7 @@ Resources:
   BucketParameter:
     Condition: GenerateBucketParameter
     Type: AWS::SSM::Parameter
+    DeletionPolicy: Retain
     Properties:
       Type: String
       Name: !Ref BucketParameterName
@@ -153,6 +152,7 @@ Resources:
   TableParameter:
     Condition: GenerateTableParameter
     Type: AWS::SSM::Parameter
+    DeletionPolicy: Retain
     Properties:
       Type: String
       Name: !Ref TableParameterName
@@ -161,6 +161,7 @@ Resources:
   KeyParameter:
     Condition: GenerateKeyParameter
     Type: AWS::SSM::Parameter
+    DeletionPolicy: Retain
     Properties:
       Type: String
       Name: !Ref KeyParameterName
