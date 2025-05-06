@@ -45,7 +45,6 @@ data "aws_kms_alias" "tfstate" {
   name = "alias/${data.aws_ssm_parameter.tfstate_key.value}"
 }
 
-
 data "aws_iam_policy_document" "tfstate_access" {
 
   statement {
